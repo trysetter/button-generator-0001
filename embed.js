@@ -56,6 +56,7 @@
     
     // Load widget script from baseUrl
     script.src = `${config.baseUrl}/widget.js`;
+	console.log(script.src);
     script.async = true;
     script.onload = function() {
         if (window.initWhatsAppWidget) {
