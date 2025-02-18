@@ -21,7 +21,7 @@ Add this code to your website before the closing `</body>` tag:
     window._whatsappConfig = {
         buttonName: 'Message Us',
         buttonIconSize: 22,
-        brandImageUrl: '',  // Your company logo URL
+        brandImageUrl: 'https://cdn.prod.website-files.com/65c0a21468a11124c832dc8b/67b40795a14ebddfa715cbe0_unnamed.webp',
         brandName: 'Your Company Name',
         brandSubtitleText: 'Typically replies within seconds',
         buttonSize: 'large',
@@ -32,8 +32,15 @@ Add this code to your website before the closing `</body>` tag:
         prefillMessage: 'Hi, I want to know more!'
     };
 </script>
-<script src="https://mindvalleybutton-production.up.railway.app/widget/whatsapp/v1/embed.js" async></script>
+<script src="https://cdn.jsdelivr.net/gh/timonikolai/mindvalley@main/public/widget/whatsapp/v1/embed.js" async></script>
 ```
+
+### CDN Usage
+The widget files are served through jsDelivr CDN for better reliability and performance. The CDN URLs are:
+- Widget: `https://cdn.jsdelivr.net/gh/timonikolai/mindvalley@main/public/widget/whatsapp/v1/embed.js`
+- Assets: Served through the same CDN path
+
+This ensures the widget continues to work even during server maintenance or restarts.
 
 ## Configuration Options
 

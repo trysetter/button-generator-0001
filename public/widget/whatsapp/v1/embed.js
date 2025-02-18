@@ -33,10 +33,9 @@
     document.body.appendChild(backlinkContainer);
     document.head.appendChild(schema);
     
-    // Load the main widget script
+    // Load the main widget script from CDN
     const script = document.createElement('script');
-    const scriptPath = document.currentScript.src.replace('embed.js', 'widget.js');
-    script.src = scriptPath;
+    script.src = 'https://cdn.jsdelivr.net/gh/timonikolai/mindvalley@main/public/widget/whatsapp/v1/widget.js';
     script.async = true;
     
     // Initialize widget when script loads
