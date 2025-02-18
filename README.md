@@ -1,17 +1,17 @@
-# Setter AI WhatsApp Widget
+# Mindvalley WhatsApp Widget
 
-A lightweight, customizable WhatsApp chat widget that can be embedded on any website.
+A customizable WhatsApp chat widget that can be easily embedded into any website. The widget provides a professional and seamless way for visitors to start WhatsApp conversations with your business.
 
-## Deployment
+## Features
 
-1. Create a new project on Railway.app
-2. Connect this repository to your Railway project
-3. Deploy the project with the following settings:
-   - Port: 8080
-   - Build Command: `npm install`
-   - Start Command: `npm start`
+- 🎨 Fully customizable appearance
+- 📱 Mobile responsive
+- 🔒 Secure implementation with Shadow DOM
+- 🔍 SEO-friendly
+- ⚡ Fast loading with async script
+- 🌐 Easy to embed
 
-## Usage
+## Installation
 
 Add this code to your website before the closing `</body>` tag:
 
@@ -27,48 +27,46 @@ Add this code to your website before the closing `</body>` tag:
         buttonSize: 'large',
         buttonPosition: 'right',
         callToAction: 'Start Chat',
-        phoneNumber: '12345678901',  // Your WhatsApp number
+        phoneNumber: '12184273128',  // Your WhatsApp number
         welcomeMessage: 'Hi there 👋',
         prefillMessage: 'Hi, I want to know more!'
     };
 </script>
-<script src="https://mindvalleybutton-production.up.railway.app/widget/whatsapp/v1/embed.js" async></script>
+<script src="https://www.trysetter.com/widget/whatsapp/v1/embed.js" async></script>
 ```
 
 ## Configuration Options
 
-- `buttonName`: Text shown on the WhatsApp button
-- `buttonIconSize`: Size of the WhatsApp icon in pixels
-- `brandImageUrl`: URL to your company logo
-- `brandName`: Your company name
-- `brandSubtitleText`: Subtitle shown under your company name
-- `buttonSize`: 'small', 'medium', or 'large'
-- `buttonPosition`: 'left' or 'right'
-- `callToAction`: Text shown on the chat button
-- `phoneNumber`: Your WhatsApp number (numbers only, no spaces or special characters)
-- `welcomeMessage`: First message shown in the chat
-- `prefillMessage`: Message that will be pre-filled in WhatsApp
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| `buttonName` | string | Text shown on the WhatsApp button | 'WhatsApp' |
+| `buttonIconSize` | number | Size of the WhatsApp icon in pixels | 24 |
+| `brandImageUrl` | string | URL to your company logo | '' |
+| `brandName` | string | Your company name | '' |
+| `brandSubtitleText` | string | Subtitle shown under company name | 'Typically replies within seconds' |
+| `buttonSize` | string | Size of the button ('small', 'medium', 'large') | 'large' |
+| `buttonPosition` | string | Position of the button ('left', 'right') | 'right' |
+| `callToAction` | string | Text shown on the chat button | 'Start Chat' |
+| `phoneNumber` | string | Your WhatsApp number (numbers only) | '' |
+| `welcomeMessage` | string | First message shown in chat | 'Hello 👋' |
+| `prefillMessage` | string | Pre-filled message for users | 'Hi, I want to know more!' |
 
 ## Development
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start the development server: `npm start`
-4. Visit `http://localhost:8080` to test the widget
+The widget consists of two main files:
+- `embed.js` - Entry point that loads the widget and handles SEO
+- `widget.js` - Main widget implementation with styles and functionality
 
-## Files
+To run locally:
+```bash
+node server.js
+```
+Then visit `http://localhost:3001`
 
-- `public/widget/whatsapp/v1/embed.js`: The main embed script
-- `public/widget/whatsapp/v1/widget.js`: The widget implementation
-- `server.js`: Express server for serving the widget files
+## License
 
-## Features
+MIT License
 
-- Lightweight and fast
-- SEO-friendly with proper backlinks
-- Shadow DOM for style isolation
-- Mobile responsive
-- Customizable appearance
-- Proper caching headers
-- CORS enabled
-- Gzip compression 
+## Credits
+
+Powered by [Setter AI](https://www.trysetter.com) 
