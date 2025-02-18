@@ -40,6 +40,53 @@ app.get('/health', (req, res) => {
     res.status(200).send('OK');
 });
 
+let isShuttingDown = false;
+let server;
+
+// Graceful shutdown function
+const gracefulShutdown = async () => {
+    if (isShuttingDown) return;
+    isShuttingDown = true;
+
+    console.log('Starting graceful shutdown...');
+
+    try {
+        if (server) {
+            await new Promise((resolve, reject) => {
+                server.close((err) => {
+                    if (err) {
+                        console.error('Error during server close:', err);
+                        reject(err);
+                    } else {
+                        console.log('Server closed gracefully');
+                        resolve();
+                    }
+                });
+
+                // Close any existing connections
+                setTimeout(() => {
+                    console.log('Forcing remaining connections to close');
+                    resolve();
+                }, 5000);
+            });
+        }
+        console.log('Shutdown completed');
+        process.exit(0);
+    } catch (err) {
+        console.error('Error during shutdown:', err);
+        process.exit(1);
+    }
+};
+
+// Handle termination signals
+const signals = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
+signals.forEach(signal => {
+    process.on(signal, () => {
+        console.log(`${signal} received...`);
+        gracefulShutdown();
+    });
+});
+
 // Handle uncaught exceptions
 process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception:', err);
@@ -52,38 +99,7 @@ process.on('unhandledRejection', (reason, promise) => {
     gracefulShutdown();
 });
 
-let server;
-
 // Start the server
 server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-});
-
-// Graceful shutdown function
-const gracefulShutdown = () => {
-    console.log('Starting graceful shutdown...');
-    
-    if (server) {
-        server.close(() => {
-            console.log('Server closed gracefully');
-            process.exit(0);
-        });
-
-        // Force close after 10 seconds
-        setTimeout(() => {
-            console.log('Forcing server shutdown...');
-            process.exit(1);
-        }, 10000);
-    }
-};
-
-// Handle termination signals
-process.on('SIGTERM', () => {
-    console.log('SIGTERM received...');
-    gracefulShutdown();
-});
-
-process.on('SIGINT', () => {
-    console.log('SIGINT received...');
-    gracefulShutdown();
 }); 
