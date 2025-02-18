@@ -32,7 +32,7 @@ Add this code to your website before the closing `</body>` tag:
         prefillMessage: 'Hi, I want to know more!'
     };
 </script>
-<script src="https://www.trysetter.com/widget/whatsapp/v1/embed.js" async></script>
+<script src="https://mindvalleybutton-production.up.railway.app/widget/whatsapp/v1/embed.js" async></script>
 ```
 
 ## Configuration Options
