@@ -4,7 +4,7 @@
   "description": "Setter AI WhatsApp Widget CDN",
   "main": "server.js",
   "scripts": {
-    "start": "pm2-runtime start server.js"
+    "start": "pm2-runtime start ecosystem.config.js"
   },
   "engines": {
     "node": ">=14.0.0"

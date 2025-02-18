@@ -61,6 +61,8 @@ app.get('/health', (req, res) => {
     });
 });
 
+let isShuttingDown = false;
+
 // Start server
 const server = app.listen(PORT, () => {
     log(`Server running on port ${PORT}`);
@@ -71,23 +73,48 @@ const server = app.listen(PORT, () => {
     }
 });
 
-// Handle shutdown signals
-process.on('SIGINT', () => {
-    log('SIGINT received');
-    shutdown();
-});
-
-process.on('SIGTERM', () => {
-    log('SIGTERM received');
-    shutdown();
-});
-
 // Graceful shutdown
 const shutdown = () => {
-    log('Starting graceful shutdown...');
+    if (isShuttingDown) {
+        log('Shutdown already in progress');
+        return;
+    }
     
+    isShuttingDown = true;
+    log('Starting graceful shutdown...');
+
+    // Stop accepting new connections
+    server.unref();
+    
+    // Close server
     server.close(() => {
         log('Server closed');
         process.exit(0);
     });
-}; 
+
+    // Force shutdown after 800ms
+    setTimeout(() => {
+        log('Forcing shutdown');
+        process.exit(0);
+    }, 800);
+};
+
+// Handle shutdown signals
+['SIGTERM', 'SIGINT', 'SIGUSR2'].forEach(signal => {
+    process.on(signal, () => {
+        log(`${signal} received`);
+        shutdown();
+    });
+});
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+    log(`Uncaught Exception: ${err.stack || err}`);
+    shutdown();
+});
+
+// Handle unhandled rejections
+process.on('unhandledRejection', (reason, promise) => {
+    log(`Unhandled Rejection at: ${promise}\nReason: ${reason}`);
+    shutdown();
+}); 
