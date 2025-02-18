@@ -50,7 +50,7 @@
         phoneNumber: '',
         welcomeMessage: 'Hi there 👋',
         prefillMessage: 'Hi, I want to more about the program!',
-        baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@latest'
+        baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main'
     };
     const config = { ...defaultConfig, ...window._whatsappConfig || {} };
     
