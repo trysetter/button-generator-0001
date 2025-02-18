@@ -35,7 +35,8 @@
     
     // Load the main widget script
     const script = document.createElement('script');
-    script.src = '/widget.js';
+    const scriptPath = document.currentScript.src.replace('embed.js', 'widget.js');
+    script.src = scriptPath;
     script.async = true;
     
     // Initialize widget when script loads
@@ -47,7 +48,7 @@
                 buttonIconSize: '24',
                 brandImageUrl: '',
                 brandName: '',
-                brandSubtitleText: 'Typically replies within a day',
+                brandSubtitleText: 'Typically replies within seconds',
                 buttonSize: 'large',
                 buttonPosition: 'right',
                 callToAction: 'Chat Now',

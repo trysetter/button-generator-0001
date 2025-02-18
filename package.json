@@ -1,0 +1,21 @@
+{
+  "name": "whatsapp-widget",
+  "version": "1.0.0",
+  "description": "WhatsApp chat widget for easy website integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "whatsapp",
+    "chat",
+    "widget",
+    "mindvalley"
+  ],
+  "author": "Setter AI",
+  "license": "MIT"
+} 
