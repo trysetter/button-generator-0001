@@ -6,8 +6,10 @@ A lightweight, customizable WhatsApp chat widget that can be embedded on any web
 
 1. Create a new project on Railway.app
 2. Connect this repository to your Railway project
-3. Deploy the project
-4. Your widget will be available at: `https://your-railway-url/widget/whatsapp/v1/embed.js`
+3. Deploy the project with the following settings:
+   - Port: 8080
+   - Build Command: `npm install`
+   - Start Command: `npm start`
 
 ## Usage
 
@@ -25,12 +27,12 @@ Add this code to your website before the closing `</body>` tag:
         buttonSize: 'large',
         buttonPosition: 'right',
         callToAction: 'Start Chat',
-        phoneNumber: '12184273128',  // Your WhatsApp number
+        phoneNumber: '12345678901',  // Your WhatsApp number
         welcomeMessage: 'Hi there 👋',
         prefillMessage: 'Hi, I want to know more!'
     };
 </script>
-<script src="https://setter-whatsapp-widget-production.up.railway.app/widget/whatsapp/v1/embed.js" async></script>
+<script src="https://mindvalleybutton-production.up.railway.app/widget/whatsapp/v1/embed.js" async></script>
 ```
 
 ## Configuration Options
@@ -52,7 +54,7 @@ Add this code to your website before the closing `</body>` tag:
 1. Clone the repository
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
-4. Visit `http://localhost:3000` to test the widget
+4. Visit `http://localhost:8080` to test the widget
 
 ## Files
 
