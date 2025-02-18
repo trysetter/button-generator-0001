@@ -44,9 +44,18 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    let filePath = '.' + req.url;
-    if (filePath === './') {
+    // Serve files from public directory
+    let filePath = path.join('public', req.url);
+    if (req.url === '/') {
         filePath = './test.html';
+    }
+
+    // Security check to prevent directory traversal
+    if (!filePath.startsWith('public') && !filePath.startsWith('./test.html')) {
+        console.error(`Security warning: Attempted access to restricted path: ${filePath}`);
+        res.writeHead(403);
+        res.end('Forbidden');
+        return;
     }
 
     const extname = path.extname(filePath);
@@ -61,6 +70,13 @@ const server = http.createServer((req, res) => {
             break;
         case '.svg':
             contentType = 'image/svg+xml';
+            break;
+        case '.png':
+            contentType = 'image/png';
+            break;
+        case '.jpg':
+        case '.jpeg':
+            contentType = 'image/jpeg';
             break;
     }
 
