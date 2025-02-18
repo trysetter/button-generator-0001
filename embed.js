@@ -38,24 +38,27 @@
     
     // Load widget script
     const script = document.createElement('script');
-    script.src = '/widget.js';
+    const defaultConfig = {
+        buttonName: 'WhatsApp',
+        buttonIconSize: '24',
+        brandImageUrl: '',
+        brandName: '',
+        brandSubtitleText: 'Typically replies within seconds',
+        buttonSize: 'large',
+        buttonPosition: 'right',
+        callToAction: 'Start Chat',
+        phoneNumber: '',
+        welcomeMessage: 'Hi there 👋',
+        prefillMessage: 'Hi, I want to more about the program!',
+        baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@latest'
+    };
+    const config = { ...defaultConfig, ...window._whatsappConfig || {} };
+    
+    // Load widget script from baseUrl
+    script.src = `${config.baseUrl}/widget.js`;
     script.async = true;
     script.onload = function() {
         if (window.initWhatsAppWidget) {
-            const defaultConfig = {
-                buttonName: 'WhatsApp',
-                buttonIconSize: '24',
-                brandImageUrl: '',
-                brandName: '',
-                brandSubtitleText: 'Typically replies within seconds',
-                buttonSize: 'large',
-                buttonPosition: 'right',
-                callToAction: 'Start Chat',
-                phoneNumber: '',
-                welcomeMessage: 'Hi there 👋',
-                prefillMessage: 'Hi, I want to more about the program!'
-            };
-            const config = { ...defaultConfig, ...window._whatsappConfig || {} };
             window.initWhatsAppWidget(shadow, config);
         }
     };
