@@ -93,7 +93,7 @@ let isShuttingDown = false;
 let server;
 
 // Graceful shutdown function
-const gracefulShutdown = async () => {
+const gracefulShutdown = () => {
     if (isShuttingDown) {
         log('Shutdown already in progress...');
         return;
@@ -102,39 +102,30 @@ const gracefulShutdown = async () => {
     isShuttingDown = true;
     log('Starting graceful shutdown...');
 
+    // Immediately stop accepting new connections
+    server.unref();
+
+    // Force process exit after 1 second
+    setTimeout(() => {
+        log('Forcing process exit');
+        process.exit(0);
+    }, 1000);
+
     try {
         if (server) {
-            await new Promise((resolve, reject) => {
-                // Get active connections
-                const activeConnections = server._connections || 0;
-                log(`Active connections: ${activeConnections}`);
+            const activeConnections = server._connections || 0;
+            log(`Active connections: ${activeConnections}`);
 
-                server.close((err) => {
-                    if (err) {
-                        log(`Error during server close: ${err}`);
-                        reject(err);
-                    } else {
-                        log('Server closed gracefully');
-                        resolve();
-                    }
-                });
-
-                // Close any existing connections
-                setTimeout(() => {
-                    log('Forcing remaining connections to close');
-                    resolve();
-                }, 3000); // Reduced to 3 seconds for Railway
+            server.close((err) => {
+                if (err) {
+                    log(`Error during server close: ${err}`);
+                    process.exit(1);
+                } else {
+                    log('Server closed gracefully');
+                    process.exit(0);
+                }
             });
         }
-
-        // Close log stream
-        await new Promise(resolve => logStream.end(resolve));
-        log('Shutdown completed');
-        
-        // Give time for final log to be written
-        setTimeout(() => {
-            process.exit(0);
-        }, 500);
     } catch (err) {
         log(`Error during shutdown: ${err}`);
         process.exit(1);
@@ -142,8 +133,7 @@ const gracefulShutdown = async () => {
 };
 
 // Handle termination signals
-const signals = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
-signals.forEach(signal => {
+['SIGTERM', 'SIGINT', 'SIGUSR2'].forEach(signal => {
     process.on(signal, () => {
         log(`${signal} signal received...`);
         gracefulShutdown();
