@@ -3,6 +3,9 @@
         :host {
             --whatsapp-green: #25D366;
             --popup-width: 360px;
+            --header-color: #075E54;
+            --chat-bg: #E5DDD5;
+            --user-msg-bg: #DCF8C6;
         }
         
         .mv-whatsapp-widget {
@@ -53,7 +56,7 @@
         }
 
         .mv-popup-header {
-            background-color: #075E54;
+            background-color: var(--header-color);
             padding: 16px;
             color: white;
         }
@@ -68,6 +71,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            min-width: 0;
         }
 
         .mv-business-avatar {
@@ -86,8 +90,6 @@
         }
 
         .mv-business-details {
-            display: flex;
-            flex-direction: column;
             min-width: 0;
         }
 
@@ -114,13 +116,13 @@
             font-size: 24px;
             cursor: pointer;
             padding: 4px;
-            flex-shrink: 0;
             line-height: 1;
+            flex-shrink: 0;
         }
 
         .mv-popup-content {
             padding: 16px;
-            background: #E5DDD5;
+            background: var(--chat-bg);
             min-height: 200px;
             max-height: 400px;
             overflow-y: auto;
@@ -135,6 +137,7 @@
             padding: 8px 12px;
             border-radius: 8px;
             position: relative;
+            word-break: break-word;
         }
 
         .mv-business .mv-message-content {
@@ -143,21 +146,15 @@
         }
 
         .mv-user .mv-message-content {
-            background: #DCF8C6;
+            background: var(--user-msg-bg);
             margin-left: auto;
         }
 
         .mv-sender {
-            color: #075E54;
+            color: var(--header-color);
             font-weight: 600;
             font-size: 13px;
             margin-bottom: 4px;
-        }
-
-        .mv-text {
-            font-size: 14px;
-            line-height: 1.4;
-            word-break: break-word;
         }
 
         .mv-popup-footer {
@@ -186,10 +183,6 @@
             background-color: #1ea952;
         }
 
-        .mv-chat-now-btn .mv-whatsapp-icon {
-            flex-shrink: 0;
-        }
-
         .mv-powered-by {
             text-align: center;
             font-size: 13px;
@@ -197,7 +190,7 @@
         }
 
         .mv-setter-link {
-            color: #075E54;
+            color: var(--header-color);
             text-decoration: none;
             font-weight: 500;
         }
@@ -222,7 +215,6 @@
             }
         }
 
-        /* Button sizes */
         .mv-button-large {
             padding: 12px 24px;
             font-size: 16px;
@@ -239,11 +231,7 @@
         }
     `;
 
-    // WhatsApp icon SVG as base64
     const whatsappIconBase64 = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAuNDAzOSAzLjU5MjA0QzE4LjE1OTIgMS4yNzUyOCAxNS4xNDE1IDAgMTEuOTk0OCAwQzUuNDM3MjQgMCAwIDUuNDM3MjQgMCAxMS45OTQ4QzAgMTQuMTA1MyAwLjU0NjY5MyAxNi4xNjM4IDEuNTgzNDYgMTcuOTc2NEwwIDI0TDYuMTYxNDIgMjIuNDQ4OUM3LjkxNzMyIDIzLjM5NzYgOS45NTQzMyAyMy45ODk2IDExLjk5NDggMjMuOTg5NkgxMkMxOC41NTc2IDIzLjk4OTYgMjQgMTguNTUyNCAyNCAxMS45OTQ4QzI0IDguODQ4MDcgMjIuNjQ4NyA1LjkwODggMjAuNDAzOSAzLjU5MjA0Wk0xMS45OTQ4IDIxLjk4ODVDMTAuMjE3NCAyMS45ODg1IDguNDgxNSAyMS40MzE0IDYuOTgyNjggMjAuMzg0Mkw2LjYyMjA1IDIwLjE2NTRMMi44NjYxNCAyMS4wOTgxTDMuODE5NjkgMTcuNDM0NUwzLjU3OTUzIDE3LjA1ODFDMi40MjEyNiAxNS41MDY5IDEuODIzNjIgMTMuNjg5NSAxLjgyMzYyIDExLjc5NjhDMS44MjM2MiA2LjQ0MDk0IDYuMjk2NjkgMi4wMDExIDExLjk5NDggMi4wMDExQzE0LjYyOTkgMi4wMDExIDE3LjE0OTYgMy4wNzg3NCAxOS4wMjUyIDQuOTY5NkMyMC45MDA4IDYuODYwNDcgMjIuMTc2NCw5LjM1OTY5IDIyLjE3NjQgMTEuOTk0OEMyMi4xNzY0IDE3LjY5MjkgMTcuNjkyOSAyMS45ODg1IDExLjk5NDggMjEuOTg4NVpNMTcuNDEzOCAxNC41MDY5QzE3LjExNTQgMTQuMzU3NyAxNS42NjE0IDEzLjY0ODggMTUuMzgzNSAxMy41NDk2QzE1LjEwNTcgMTMuNDUwNCAxNC45MDU1IDEzLjQwMDggMTQuNzA1MyAxMy42OTkyQzE0LjUwNTEgMTMuOTk3NiAxMy45NDggMTQuNjU2MSAxMy43Njg2IDE0Ljg1NjNDMTMuNTg5MSAxNS4wNTY1IDEzLjQwOTcgMTUuMDgxMyAxMy4xMTEzIDE0LjkzMjFDMTIuODEyOSAxNC43ODI5IDExLjg0ODYgMTQuNDYzIDEwLjcxMTEgMTMuNDUwNEM5LjgyNzE3IDEyLjY2MjYgOS4yMjk1MyAxMS42OTgzIDkuMDUwMTIgMTEuMzk5OUM4Ljg3MDcxIDExLjEwMTUgOS4wMjk3NCAxMC45MzIxIDkuMTgzNTQgMTAuNzc4M0M5LjMyMjM2IDEwLjYzOTUgOS40ODYxNiAxMC40MjA3IDkuNjM1MzUgMTAuMjQxM0M5Ljc4NDU1IDEwLjA2MTkgOS44MzQxNyA5LjkzMjMyIDkuOTMzMzUgOS43MzIxMkM5Ljk4Mjk3IDkuNTMxOTMgOS45ODI5NyA5LjMzMTczIDkuOTMzMzUgOS4xODI1M0M5Ljg4MzczIDkuMDMzMzQgOS4yMjk1MyA3LjU3OTMzIDguOTgwMTYgNi45ODIwOEM4LjczMDc5IDYuNDA0MjUgOC40ODY0IDYuNDUzODcgOC4zMDY5OSA2LjQ1Mzg3QzguMTI3NTggNi40NTM4NyA3LjkyNzM4IDYuNDUzODcgNy43MjcxOCA2LjQ1Mzg3QzcuNTI2OTkgNi40NTM4NyA3LjE5OTQxIDYuNTAzNDkgNi45MjE2MSA2LjgwMTkzQzYuNjQzODEgNy4xMDAzNyA1Ljg4NTgzIDcuODA5MjUgNS44ODU4MyA5LjI2MzI2QzUuODg1ODMgMTAuNzE3MyA2Ljk0MTQyIDEyLjEyMTcgNy4wOTA2MiAxMi4zMjE5QzcuMjM5ODIgMTIuNTIyMSA5LjIyOTUzIDE1LjU2NDIgMTIuMjM1MyAxNi44MTk2QzEzLjAxMzEgMTcuMTU3IDE3LjQxMzggMTguNjExIDEzLjYxMzkgMTYuODE5NkMxMy45OTE1IDE2LjgxOTYgMTQuMzE5MSAxNi43NyAxNC41OTY5IDE2LjcyMDRDMTQuODc0NyAxNi42NzA4IDE2LjA4MjUgMTYuMDM2NCAxNi4zMzE5IDE1LjMzNzlDMTYuNTgxMiAxNC42Mzk0IDE2LjU4MTIgMTQuMDQyMiAxNi41MzE2IDEzLjk0M0MxNi40ODIgMTMuODQzOCAxNi4yODE4IDEzLjc5NDIgMTUuOTgzNCAxMy42NDVDMTUuNjg1IDE0LjUwNjkgMTcuNDEzOCAxNC41MDY5IDE3LjQxMzggMTQuNTA2OVoiIGZpbGw9IndoaXRlIi8+PC9zdmc+';
-
-    // Mindvalley logo URL
-    const mindvalleyLogoUrl = 'https://cdn.prod.website-files.com/65c0a21468a11124c832dc8b/67b40795a14ebddfa715cbe0_unnamed.webp';
 
     function createWidget(config) {
         const template = document.createElement('template');
@@ -255,7 +243,7 @@
                         <div class="mv-header-content">
                             <div class="mv-business-info">
                                 <div class="mv-business-avatar">
-                                    <img src="${config.brandImageUrl || mindvalleyLogoUrl}" alt="${config.brandName}" class="mv-avatar-img">
+                                    <img src="${config.brandImageUrl}" alt="${config.brandName}" class="mv-avatar-img">
                                 </div>
                                 <div class="mv-business-details">
                                     <div class="mv-business-name">${config.brandName}</div>
@@ -306,62 +294,37 @@
         return template;
     }
 
-    function initWhatsAppWidget(shadowRoot, config = {}) {
-        console.log('Initializing WhatsApp Widget with config:', config);
-
-        // Create and append widget
+    function initWhatsAppWidget(shadowRoot, config) {
         const widgetTemplate = createWidget(config);
         shadowRoot.appendChild(widgetTemplate.content.cloneNode(true));
 
-        // Get elements
         const widget = shadowRoot.querySelector('.mv-whatsapp-widget');
         const whatsappButton = shadowRoot.querySelector('#mvWhatsappButton');
         const whatsappPopup = shadowRoot.querySelector('#mvWhatsappPopup');
         const closePopup = shadowRoot.querySelector('#mvClosePopup');
 
-        console.log('Elements found:', {
-            widget: !!widget,
-            whatsappButton: !!whatsappButton,
-            whatsappPopup: !!whatsappPopup,
-            closePopup: !!closePopup
-        });
-
-        // Position the widget
         if (config.buttonPosition === 'left') {
             widget.style.left = '20px';
             widget.style.right = 'auto';
         }
 
-        // Add click event to button
-        if (whatsappButton) {
-            whatsappButton.addEventListener('click', (e) => {
-                console.log('Button clicked');
-                e.stopPropagation();
-                whatsappPopup.classList.toggle('active');
-            });
-        }
+        whatsappButton?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            whatsappPopup.classList.toggle('active');
+        });
 
-        // Add click event to close button
-        if (closePopup) {
-            closePopup.addEventListener('click', (e) => {
-                console.log('Close button clicked');
-                e.stopPropagation();
-                whatsappPopup.classList.remove('active');
-            });
-        }
+        closePopup?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            whatsappPopup.classList.remove('active');
+        });
 
-        // Add click outside handler
         document.addEventListener('click', (event) => {
             const isClickInsideWidget = event.composedPath().includes(widget);
             if (!isClickInsideWidget && whatsappPopup.classList.contains('active')) {
-                console.log('Clicked outside widget');
                 whatsappPopup.classList.remove('active');
             }
         });
-
-        console.log('WhatsApp Widget initialized');
     }
 
-    // Add to window object
     window.initWhatsAppWidget = initWhatsAppWidget;
 })(); 

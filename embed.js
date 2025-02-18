@@ -1,21 +1,17 @@
 (function() {
-    // Create the embed element
-    const embed = document.createElement('div');
-    embed.id = 'mv-whatsapp-widget-container';
+    // Create container and shadow DOM
+    const container = document.createElement('div');
+    container.id = 'mv-whatsapp-widget-container';
+    const shadow = container.attachShadow({ mode: 'open' });
     
-    // Create Shadow DOM
-    const shadow = embed.attachShadow({ mode: 'open' });
-    
-    // Add the visible backlink (outside Shadow DOM for SEO)
-    const backlinkContainer = document.createElement('div');
-    backlinkContainer.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;';
-    
+    // Add SEO backlink
     const backlink = document.createElement('a');
     backlink.href = 'https://www.trysetter.com';
     backlink.rel = 'noopener';
     backlink.textContent = 'Setter AI - WhatsApp Chat Widget for Business';
+    backlink.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0';
     
-    // Add schema.org markup for better SEO
+    // Add schema markup
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.textContent = JSON.stringify({
@@ -29,41 +25,33 @@
         }
     });
     
-    backlinkContainer.appendChild(backlink);
-    document.body.appendChild(backlinkContainer);
-    document.head.appendChild(schema);
-    
-    // Load the main widget script
+    // Load widget script
     const script = document.createElement('script');
     script.src = '/widget.js';
     script.async = true;
-    
-    // Initialize widget when script loads
     script.onload = function() {
         if (window.initWhatsAppWidget) {
-            // Merge default config with user config
             const defaultConfig = {
                 buttonName: 'WhatsApp',
                 buttonIconSize: '24',
                 brandImageUrl: '',
                 brandName: '',
-                brandSubtitleText: 'Typically replies within a day',
+                brandSubtitleText: 'Typically replies within seconds',
                 buttonSize: 'large',
                 buttonPosition: 'right',
-                callToAction: 'Chat Now',
+                callToAction: 'Start Chat',
                 phoneNumber: '',
-                welcomeMessage: 'Hello 👋',
-                prefillMessage: 'Hi, I want to know more!'
+                welcomeMessage: 'Hi there 👋',
+                prefillMessage: 'Hi, I want to more about the program!'
             };
-
-            const userConfig = window._whatsappConfig || {};
-            const config = { ...defaultConfig, ...userConfig };
-            
+            const config = { ...defaultConfig, ...window._whatsappConfig || {} };
             window.initWhatsAppWidget(shadow, config);
         }
     };
     
     // Add elements to DOM
-    document.body.appendChild(embed);
+    document.body.appendChild(container);
+    document.body.appendChild(backlink);
+    document.head.appendChild(schema);
     document.head.appendChild(script);
 })(); 

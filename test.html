@@ -3,26 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Widget Test</title>
+    <title>WhatsApp Widget Example</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
         .content {
-            min-height: 150vh; /* Make page scrollable to test fixed positioning */
+            min-height: 150vh;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <h1>WhatsApp Widget Test Page</h1>
-        <p>This is a test page to demonstrate the WhatsApp widget. The widget should appear in the bottom right corner.</p>
-        <p>Scroll down to test the fixed positioning...</p>
+        <h1>WhatsApp Widget Example</h1>
+        <p>This page demonstrates how to embed the WhatsApp widget on your website.</p>
         
-        <h2>Lorem Ipsum</h2>
+        <h2>How to Embed</h2>
+        <p>Copy and paste this code into your website before the closing <code>&lt;/body&gt;</code> tag:</p>
+        <pre><code>&lt;script&gt;
+    window._whatsappConfig = {
+        buttonName: 'Message Us',
+        buttonIconSize: 22,
+        brandImageUrl: 'YOUR_LOGO_URL',
+        brandName: 'Your Company',
+        brandSubtitleText: 'Typically replies within seconds',
+        buttonSize: 'large',
+        buttonPosition: 'right',
+        callToAction: 'Start Chat',
+        phoneNumber: 'YOUR_PHONE_NUMBER',
+        welcomeMessage: 'Hi there 👋',
+        prefillMessage: 'Hi, I want to more about the program!'
+    };
+&lt;/script&gt;
+&lt;script src="https://cdn.setter.ai/whatsapp-widget/v1/embed.js" async&gt;&lt;/script&gt;</code></pre>
+
+        <h2>Live Demo</h2>
+        <p>Scroll down to see the widget in action. The widget will stay fixed in the bottom right corner.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
 
@@ -31,13 +56,13 @@
         window._whatsappConfig = {
             buttonName: 'Message Us',
             buttonIconSize: 22,
-            brandImageUrl: '',  // Will use default Mindvalley logo
+            brandImageUrl: 'https://cdn.prod.website-files.com/65c0a21468a11124c832dc8b/67b40795a14ebddfa715cbe0_unnamed.webp',
             brandName: 'Mindvalley',
             brandSubtitleText: 'Typically replies within seconds',
             buttonSize: 'large',
             buttonPosition: 'right',
             callToAction: 'Start Chat',
-            phoneNumber: '12184273128',  // Removed spaces and special characters
+            phoneNumber: '12184273128',
             welcomeMessage: 'Hi there 👋',
             prefillMessage: 'Hi, I want to more about the program!'
         };
