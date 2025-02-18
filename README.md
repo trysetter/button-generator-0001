@@ -57,11 +57,20 @@ The widget consists of two main files:
 - `embed.js` - Entry point that loads the widget and handles SEO
 - `widget.js` - Main widget implementation with styles and functionality
 
+### Local Development
 To run locally:
 ```bash
 node server.js
 ```
-Then visit `http://localhost:3001`
+Then visit `http://localhost:8080`
+
+### Production Usage
+The widget is deployed and available at:
+```
+https://mindvalleybutton-production.up.railway.app
+```
+
+To embed on any website, use the installation code provided above. The widget can be embedded on any domain as it includes proper CORS headers.
 
 ## License
 
