@@ -32,15 +32,16 @@ Add this code to your website before the closing `</body>` tag:
         prefillMessage: 'Hi, I want to know more!'
     };
 </script>
-<script src="https://cdn.jsdelivr.net/gh/timonikolai/mindvalley@main/public/widget/whatsapp/v1/embed.js" async></script>
+<script src="https://mindvalleybutton-production.up.railway.app/widget/whatsapp/v1/embed.js" async></script>
 ```
 
-### CDN Usage
-The widget files are served through jsDelivr CDN for better reliability and performance. The CDN URLs are:
-- Widget: `https://cdn.jsdelivr.net/gh/timonikolai/mindvalley@main/public/widget/whatsapp/v1/embed.js`
-- Assets: Served through the same CDN path
+### Production Usage
+The widget is served from our Railway deployment at:
+```
+https://mindvalleybutton-production.up.railway.app
+```
 
-This ensures the widget continues to work even during server maintenance or restarts.
+The widget can be embedded on any website as it includes proper CORS headers and caching for better performance.
 
 ## Configuration Options
 
