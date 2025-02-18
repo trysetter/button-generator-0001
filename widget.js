@@ -10,8 +10,8 @@
         
         .mv-whatsapp-widget {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             z-index: 9999;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
@@ -19,14 +19,14 @@
         .mv-whatsapp-button {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             background-color: var(--whatsapp-green);
             color: white;
             border: none;
-            border-radius: 24px;
-            padding: 12px 24px;
+            border-radius: 32px;
+            padding: 20px 40px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 32px;
             font-weight: 500;
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
             transition: all 0.3s ease;
@@ -38,8 +38,8 @@
         }
 
         .mv-whatsapp-icon {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             flex-shrink: 0;
         }
 
@@ -216,18 +216,18 @@
         }
 
         .mv-button-large {
-            padding: 12px 24px;
-            font-size: 16px;
+            padding: 16px 32px;
+            font-size: 20px;
         }
 
         .mv-button-medium {
-            padding: 10px 20px;
-            font-size: 14px;
+            padding: 14px 26px;
+            font-size: 18px;
         }
 
         .mv-button-small {
-            padding: 8px 16px;
-            font-size: 13px;
+            padding: 12px 24px;
+            font-size: 16px;
         }
     `;
 

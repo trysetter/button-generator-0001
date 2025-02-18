@@ -44,7 +44,7 @@
         brandImageUrl: '',
         brandName: '',
         brandSubtitleText: 'Typically replies within seconds',
-        buttonSize: 'large',
+        buttonSize: 'medium',
         buttonPosition: 'right',
         callToAction: 'Start Chat',
         phoneNumber: '',
@@ -53,10 +53,10 @@
         baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main'
     };
     const config = { ...defaultConfig, ...window._whatsappConfig || {} };
+
     
     // Load widget script from baseUrl
     script.src = `${config.baseUrl}/widget.js`;
-	console.log(script.src);
     script.async = true;
     script.onload = function() {
         if (window.initWhatsAppWidget) {
