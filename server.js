@@ -61,37 +61,33 @@ app.get('/health', (req, res) => {
     });
 });
 
-let isShuttingDown = false;
-
 // Start server
 const server = app.listen(PORT, () => {
     log(`Server running on port ${PORT}`);
+    
+    // Tell PM2 that we're ready
+    if (process.send) {
+        process.send('ready');
+    }
 });
 
-// Handle shutdown
-const shutdown = () => {
-    if (isShuttingDown) return;
-    isShuttingDown = true;
-    
-    server.close(() => {
-        log('Server closed');
-        process.exit(0);
-    });
-
-    // Force close after 2 seconds
-    setTimeout(() => {
-        log('Forcing process exit');
-        process.exit(0);
-    }, 2000);
-};
-
 // Handle shutdown signals
+process.on('SIGINT', () => {
+    log('SIGINT received');
+    shutdown();
+});
+
 process.on('SIGTERM', () => {
     log('SIGTERM received');
     shutdown();
 });
 
-process.on('SIGINT', () => {
-    log('SIGINT received');
-    shutdown();
-}); 
+// Graceful shutdown
+const shutdown = () => {
+    log('Starting graceful shutdown...');
+    
+    server.close(() => {
+        log('Server closed');
+        process.exit(0);
+    });
+}; 

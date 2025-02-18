@@ -1,1 +1,1 @@
-web: node server.js 
+web: pm2-runtime start server.js 
