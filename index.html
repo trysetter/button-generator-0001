@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Button</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="whatsapp-widget">
+        <!-- WhatsApp Popup -->
+        <div class="whatsapp-popup" id="whatsappPopup">
+            <div class="popup-header">
+                <div class="header-content">
+                    <div class="business-info">
+                        <div class="business-avatar">
+                            <img src="mindvalley-logo.svg" alt="Mindvalley" class="avatar-img">
+                        </div>
+                        <div class="business-details">
+                            <div class="business-name">Mindvalley</div>
+                            <div class="business-type">Business Account</div>
+                        </div>
+                    </div>
+                    <button class="close-btn" id="closePopup">×</button>
+                </div>
+            </div>
+            <div class="popup-content">
+                <div class="message business">
+                    <div class="message-content">
+                        <div class="sender">Mindvalley</div>
+                        <div class="text">Hello 👋</div>
+                    </div>
+                </div>
+                <div class="message user">
+                    <div class="message-content">
+                        <div class="text">Hi Mindvalley, just visited your website. May I know more?</div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <a href="https://wa.me/your-number-here" target="_blank" class="chat-now-btn">
+                    <img src="whatsapp-white-icon.svg" alt="WhatsApp" class="whatsapp-icon">
+                    Chat Now
+                </a>
+                <div class="powered-by">
+                    ⚡ Powered by <a href="#" class="setter-link">setter.ai</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- WhatsApp Button -->
+        <button class="whatsapp-button" id="whatsappButton">
+            <img src="whatsapp-white-icon.svg" alt="WhatsApp" class="whatsapp-icon">
+            WhatsApp
+            <div class="powered-by">
+                ⚡ Powered by <a href="#" class="setter-link">setter.ai</a>
+            </div>
+        </button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
