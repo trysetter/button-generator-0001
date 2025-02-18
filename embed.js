@@ -4,14 +4,18 @@
     container.id = 'mv-whatsapp-widget-container';
     const shadow = container.attachShadow({ mode: 'open' });
     
-    // Add SEO backlink
+    // Add SEO backlink with proper accessibility attributes
+    const backlinkContainer = document.createElement('div');
+    backlinkContainer.setAttribute('role', 'complementary');
+    backlinkContainer.setAttribute('aria-label', 'Powered by Setter AI');
+    
     const backlink = document.createElement('a');
     backlink.href = 'https://www.trysetter.com';
-    backlink.rel = 'noopener';
     backlink.textContent = 'Setter AI - WhatsApp Chat Widget for Business';
     backlink.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0';
+    backlinkContainer.appendChild(backlink);
     
-    // Add schema markup
+    // Add schema markup with additional properties
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.textContent = JSON.stringify({
@@ -19,8 +23,15 @@
         "@type": "SoftwareApplication",
         "name": "Setter AI WhatsApp Chat Widget",
         "applicationCategory": "BusinessApplication",
+        "description": "WhatsApp Chat Widget for Business by Setter AI",
+        "operatingSystem": "Any",
         "offers": {
             "@type": "Offer",
+            "url": "https://www.trysetter.com"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "Setter AI",
             "url": "https://www.trysetter.com"
         }
     });
@@ -51,7 +62,7 @@
     
     // Add elements to DOM
     document.body.appendChild(container);
-    document.body.appendChild(backlink);
+    document.body.appendChild(backlinkContainer);
     document.head.appendChild(schema);
     document.head.appendChild(script);
 })(); 
