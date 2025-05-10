@@ -1,3 +1,5 @@
+By Setter AI - the worlds fastest AI Appointment setter: https://www.trysetter.com/
+
 <script>
     window._whatsappConfig = {
         buttonName: 'Message Us',
